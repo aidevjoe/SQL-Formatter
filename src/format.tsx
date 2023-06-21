@@ -1,4 +1,4 @@
-import { getSelectedText, LaunchProps, Clipboard, Detail } from "@raycast/api";
+import { LaunchProps, Action, Detail, ActionPanel } from "@raycast/api";
 import { format } from 'sql-formatter';
 
 interface SQLFormatArguments {
@@ -10,5 +10,13 @@ export default function Format(props: LaunchProps<{ arguments: SQLFormatArgument
     const content = format(code, { language: 'mysql' })
 
     const markdown = `\`\`\`sql\n${content}\n\`\`\``
-    return <Detail markdown={markdown}></Detail>
+    return <Detail
+    actions={
+      <ActionPanel title="#1 in raycast/extensions">
+        <Action.CopyToClipboard
+          title="Copy Result"
+          content={content}
+        />
+      </ActionPanel>
+    } markdown={markdown}></Detail>
 }
