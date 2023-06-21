@@ -12,7 +12,7 @@ export default function Format(props: LaunchProps<{ arguments: SQLFormatArgument
     const markdown = `\`\`\`sql\n${content}\n\`\`\``
     return <Detail
     actions={
-      <ActionPanel title="#1 in raycast/extensions">
+      <ActionPanel>
         <Action.CopyToClipboard
           title="Copy Result"
           content={content}
